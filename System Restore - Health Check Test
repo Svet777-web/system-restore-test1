@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Restore - Health Check Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #000000 100%);
+        }
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .circuit-pattern {
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(59, 130, 246, 0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen font-sans text-white">
+    <div class="circuit-pattern min-h-screen">
+        <div class="container mx-auto px-4 py-8 max-w-4xl">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-500 rounded-full mb-6 glow">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    SYSTEM RESTORE
+                </h1>
+                <p class="text-xl text-gray-300 mb-2">Health Check Test</p>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Discover which parts of your system need debugging. This comprehensive assessment evaluates your Hardware, Software, Network, and Source Code.
+                </p>
+            </div>
+
+            <!-- Test Container -->
+            <div id="testContainer" class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 glow">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span>Progress</span>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Question Container -->
+                <div id="questionContainer">
+                    <div class="mb-6">
+                        <div id="categoryBadge" class="inline-block px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium mb-4">
+                            HARDWARE (Body)
+                        </div>
+                        <h2 id="questionText" class="text-2xl font-semibold mb-6">
+                            How would you rate your energy levels throughout the day?
+                        </h2>
+                    </div>
+
+                    <div id="optionsContainer" class="space-y-3">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+
+                    <div class="mt-8 flex justify-between">
+                        <button id="prevBtn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors disabled:opacity-50" disabled>
+                            Previous
+                        </button>
+                        <button id="nextBtn" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors disabled:opacity-50" disabled>
+                            Next Question
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Container (Hidden initially) -->
+                <div id="resultsContainer" class="hidden">
+                    <div class="text-center mb-8">
+                        <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 glow">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4">System Analysis Complete!</h2>
+                        <p class="text-gray-300">Here's your debugging report:</p>
+                    </div>
+
+                    <div id="systemScores" class="grid md:grid-cols-2 gap-6 mb-8">
+                        <!-- Scores will be populated by JavaScript -->
+                    </div>
+
+                    <div class="bg-gray-800/50 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-yellow-400">🚨 Priority Debug Areas:</h3>
+                        <div id="priorityAreas" class="space-y-2">
+                            <!-- Priority areas will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-gray-300 mb-6">Want a detailed debugging guide and personalized system optimization plan?</p>
+                        <div class="bg-blue-900/30 rounded-xl p-6">
+                            <h4 class="text-xl font-semibold mb-4">Get Your Free Detailed Report</h4>
+                            <div class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+                                <input type="email" id="emailInput" placeholder="Enter your email" class="flex-1 px-4 py-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button id="getReportBtn" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg font-semibold transition-all glow">
+                                    Get Report
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-4">📧 We'll send you a comprehensive debugging guide + subscribe you to our weekly optimization tips!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test Questions Data
+        const questions = [
+            // HARDWARE (Body) - Questions 0-4
+            {
+                category: "HARDWARE (Body)",
+                text: "How would you rate your energy levels throughout the day?",
+                options: [
+                    { text: "High energy all day, rarely feel tired", score: 5 },
+                    { text: "Good energy most of the day, some afternoon dips", score: 4 },
+                    { text: "Moderate energy, noticeable ups and downs", score: 3 },
+                    { text: "Low energy, frequent fatigue", score: 2 },
+                    { text: "Constantly exhausted, struggling to function", score: 1 }
+                ]
+            },
+            {
+                category: "HARDWARE (Body)",
+                text: "How is your sleep quality and duration?",
+                options: [
+                    { text: "7-9 hours, wake up refreshed", score: 5 },
+                    { text: "6-8 hours, mostly restful sleep", score: 4 },
+                    { text: "5-7 hours, sometimes wake up tired", score: 3 },
+                    { text: "4-6 hours, often wake up groggy", score: 2 },
+                    { text: "Less than 5 hours, chronic sleep deprivation", score: 1 }
+                ]
+            },
+            {
+                category: "HARDWARE (Body)",
+                text: "Rate your physical workspace ergonomics:",
+                options: [
+                    { text: "Perfect setup - adjustable desk, good chair, monitor at eye level", score: 5 },
+                    { text: "Good setup with minor adjustments needed", score: 4 },
+                    { text: "Decent setup but some discomfort", score: 3 },
+                    { text: "Poor setup causing regular aches/pains", score: 2 },
+                    { text: "Terrible setup - constant physical discomfort", score: 1 }
+                ]
+            },
+            {
+                category: "HARDWARE (Body)",
+                text: "How often do you experience eye strain or vision problems?",
+                options: [
+                    { text: "Never - eyes feel comfortable all day", score: 5 },
+                    { text: "Rarely - minimal eye fatigue", score: 4 },
+                    { text: "Sometimes - noticeable strain after long sessions", score: 3 },
+                    { text: "Often - regular eye discomfort", score: 2 },
+                    { text: "Constantly - severe eye strain and headaches", score: 1 }
+                ]
+            },
+            {
+                category: "HARDWARE (Body)",
+                text: "Rate your nutrition and hydration habits:",
+                options: [
+                    { text: "Balanced meals, regular hydration, minimal processed food", score: 5 },
+                    { text: "Generally good nutrition with occasional slip-ups", score: 4 },
+                    { text: "Mixed - some good choices, some poor ones", score: 3 },
+                    { text: "Poor nutrition - irregular meals, lots of junk food", score: 2 },
+                    { text: "Terrible habits - skip meals, live on caffeine/energy drinks", score: 1 }
+                ]
+            },
+
+            // SOFTWARE (Mind) - Questions 5-9
+            {
+                category: "SOFTWARE (Mind)",
+                text: "How well can you maintain focus during deep work?",
+                options: [
+                    { text: "Can focus for 2+ hours without distraction", score: 5 },
+                    { text: "Good focus for 1-2 hours at a time", score: 4 },
+                    { text: "Moderate focus - 30-60 minutes before distraction", score: 3 },
+                    { text: "Poor focus - constantly distracted", score: 2 },
+                    { text: "Cannot focus - attention scattered all the time", score: 1 }
+                ]
+            },
+            {
+                category: "SOFTWARE (Mind)",
+                text: "How do you handle information overload and decision-making?",
+                options: [
+                    { text: "Process information efficiently, make decisions quickly", score: 5 },
+                    { text: "Generally handle complexity well", score: 4 },
+                    { text: "Sometimes overwhelmed but manage", score: 3 },
+                    { text: "Often paralyzed by too many options", score: 2 },
+                    { text: "Constantly overwhelmed, avoid making decisions", score: 1 }
+                ]
+            },
+            {
+                category: "SOFTWARE (Mind)",
+                text: "Rate your memory and learning ability:",
+                options: [
+                    { text: "Sharp memory, learn new concepts quickly", score: 5 },
+                    { text: "Good memory, steady learning pace", score: 4 },
+                    { text: "Average memory, some learning challenges", score: 3 },
+                    { text: "Forgetful, difficult to retain new information", score: 2 },
+                    { text: "Severe memory issues, can't learn effectively", score: 1 }
+                ]
+            },
+            {
+                category: "SOFTWARE (Mind)",
+                text: "How well do you manage digital distractions?",
+                options: [
+                    { text: "Complete control - use technology intentionally", score: 5 },
+                    { text: "Good boundaries with occasional lapses", score: 4 },
+                    { text: "Moderate control - some distracting habits", score: 3 },
+                    { text: "Poor control - frequently distracted by devices", score: 2 },
+                    { text: "No control - addicted to notifications/social media", score: 1 }
+                ]
+            },
+            {
+                category: "SOFTWARE (Mind)",
+                text: "Rate your problem-solving and creativity:",
+                options: [
+                    { text: "Excellent problem-solver, highly creative", score: 5 },
+                    { text: "Good analytical skills and creative thinking", score: 4 },
+                    { text: "Decent problem-solving, some creative blocks", score: 3 },
+                    { text: "Struggle with complex problems, limited creativity", score: 2 },
+                    { text: "Can't think clearly, no creative energy", score: 1 }
+                ]
+            },
+
+            // NETWORK (Feelings) - Questions 10-14
+            {
+                category: "NETWORK (Feelings)",
+                text: "How do you handle work stress and pressure?",
+                options: [
+                    { text: "Thrive under pressure, stress motivates me", score: 5 },
+                    { text: "Handle stress well with good coping strategies", score: 4 },
+                    { text: "Manage stress okay, sometimes feel overwhelmed", score: 3 },
+                    { text: "Struggle with stress, affects my performance", score: 2 },
+                    { text: "Stress completely overwhelms me", score: 1 }
+                ]
+            },
+            {
+                category: "NETWORK (Feelings)",
+                text: "Rate your emotional regulation throughout the workday:",
+                options: [
+                    { text: "Stable emotions, rarely get upset or frustrated", score: 5 },
+                    { text: "Generally emotionally stable with minor fluctuations", score: 4 },
+                    { text: "Moderate emotional swings, manageable", score: 3 },
+                    { text: "Frequent mood swings, difficult to control", score: 2 },
+                    { text: "Extreme emotional volatility, affects work quality", score: 1 }
+                ]
+            },
+            {
+                category: "NETWORK (Feelings)",
+                text: "How connected do you feel to your team/colleagues?",
+                options: [
+                    { text: "Strong relationships, excellent communication", score: 5 },
+                    { text: "Good connections, comfortable collaborating", score: 4 },
+                    { text: "Some connections, adequate teamwork", score: 3 },
+                    { text: "Few connections, prefer working alone", score: 2 },
+                    { text: "Isolated, poor relationships, communication issues", score: 1 }
+                ]
+            },
+            {
+                category: "NETWORK (Feelings)",
+                text: "Rate your work-life boundary management:",
+                options: [
+                    { text: "Clear boundaries, never work outside hours", score: 5 },
+                    { text: "Good boundaries with rare exceptions", score: 4 },
+                    { text: "Moderate boundaries, sometimes work bleeds over", score: 3 },
+                    { text: "Poor boundaries, work often intrudes on personal time", score: 2 },
+                    { text: "No boundaries, work consumes my entire life", score: 1 }
+                ]
+            },
+            {
+                category: "NETWORK (Feelings)",
+                text: "How do you deal with impostor syndrome and self-doubt?",
+                options: [
+                    { text: "Confident in my abilities, rarely doubt myself", score: 5 },
+                    { text: "Generally confident with occasional self-doubt", score: 4 },
+                    { text: "Moderate confidence, some impostor feelings", score: 3 },
+                    { text: "Frequent self-doubt, often feel like a fraud", score: 2 },
+                    { text: "Constant impostor syndrome, severely impacts confidence", score: 1 }
+                ]
+            },
+
+            // SOURCE CODE (Spirit) - Questions 15-19
+            {
+                category: "SOURCE CODE (Spirit)",
+                text: "How meaningful does your work feel to you?",
+                options: [
+                    { text: "Deeply meaningful, aligned with my values", score: 5 },
+                    { text: "Generally meaningful, see the value in what I do", score: 4 },
+                    { text: "Somewhat meaningful, mixed feelings", score: 3 },
+                    { text: "Little meaning, just a job to me", score: 2 },
+                    { text: "No meaning, feel completely disconnected from purpose", score: 1 }
+                ]
+            },
+            {
+                category: "SOURCE CODE (Spirit)",
+                text: "Rate your motivation and drive for personal growth:",
+                options: [
+                    { text: "Highly motivated, constantly learning and growing", score: 5 },
+                    { text: "Good motivation, regular learning efforts", score: 4 },
+                    { text: "Moderate motivation, occasional growth spurts", score: 3 },
+                    { text: "Low motivation, learning feels like a chore", score: 2 },
+                    { text: "No motivation, stopped caring about growth", score: 1 }
+                ]
+            },
+            {
+                category: "SOURCE CODE (Spirit)",
+                text: "How often do you experience 'flow state' in your work?",
+                options: [
+                    { text: "Daily - regularly lose track of time in deep focus", score: 5 },
+                    { text: "Weekly - experience flow several times per week", score: 4 },
+                    { text: "Monthly - occasional flow experiences", score: 3 },
+                    { text: "Rarely - seldom experience true flow", score: 2 },
+                    { text: "Never - work always feels forced and effortful", score: 1 }
+                ]
+            },
+            {
+                category: "SOURCE CODE (Spirit)",
+                text: "Rate your sense of autonomy and control over your work:",
+                options: [
+                    { text: "Complete autonomy, make all key decisions", score: 5 },
+                    { text: "High autonomy, input on most decisions", score: 4 },
+                    { text: "Moderate autonomy, some control over work", score: 3 },
+                    { text: "Low autonomy, little control over daily tasks", score: 2 },
+                    { text: "No autonomy, feel completely micromanaged", score: 1 }
+                ]
+            },
+            {
+                category: "SOURCE CODE (Spirit)",
+                text: "How connected do you feel to your authentic self at work?",
+                options: [
+                    { text: "Completely authentic, can be myself fully", score: 5 },
+                    { text: "Mostly authentic, minor compromises", score: 4 },
+                    { text: "Somewhat authentic, some parts hidden", score: 3 },
+                    { text: "Often inauthentic, wear a 'work mask'", score: 2 },
+                    { text: "Never authentic, feel like I'm playing a role", score: 1 }
+                ]
+            }
+        ];
+
+        // Test State
+        let currentQuestion = 0;
+        let answers = [];
+
+        // DOM Elements
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const categoryBadge = document.getElementById('categoryBadge');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const questionContainer = document.getElementById('questionContainer');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const emailInput = document.getElementById('emailInput');
+        const getReportBtn = document.getElementById('getReportBtn');
+
+        // Initialize Test
+        function initTest() {
+            showQuestion(0);
+        }
+
+        // Show Question
+        function showQuestion(index) {
+            const question = questions[index];
+            
+            // Update progress
+            const progress = ((index + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+
+            // Update question content
+            categoryBadge.textContent = question.category;
+            categoryBadge.className = `inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${getCategoryStyle(question.category)}`;
+            questionText.textContent = question.text;
+
+            // Clear and populate options
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, optionIndex) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = `p-4 bg-gray-800 hover:bg-gray-700 rounded-lg cursor-pointer transition-all border-2 border-transparent hover:border-blue-500 ${answers[index] === optionIndex ? 'border-blue-500 bg-gray-700' : ''}`;
+                optionElement.innerHTML = `
+                    <div class="flex items-center">
+                        <input type="radio" name="question${index}" value="${optionIndex}" class="mr-3 w-4 h-4 text-blue-600" ${answers[index] === optionIndex ? 'checked' : ''}>
+                        <span>${option.text}</span>
+                    </div>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index, optionIndex));
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // Update navigation buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = answers[index] === undefined;
+            nextBtn.textContent = index === questions.length - 1 ? 'View Results' : 'Next Question';
+        }
+
+        // Select Option
+        function selectOption(questionIndex, optionIndex) {
+            answers[questionIndex] = optionIndex;
+            showQuestion(questionIndex);
+        }
+
+        // Category Styles
+        function getCategoryStyle(category) {
+            if (category.includes('HARDWARE')) return 'bg-red-500/20 text-red-400';
+            if (category.includes('SOFTWARE')) return 'bg-blue-500/20 text-blue-400';
+            if (category.includes('NETWORK')) return 'bg-green-500/20 text-green-400';
+            if (category.includes('SOURCE')) return 'bg-purple-500/20 text-purple-400';
+            return 'bg-gray-500/20 text-gray-400';
+        }
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showResults();
+            }
+        });
+
+        // Show Results
+        function showResults() {
+            questionContainer.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+
+            // Calculate scores
+            const scores = {
+                hardware: { total: 0, count: 0, name: 'HARDWARE (Body)' },
+                software: { total: 0, count: 0, name: 'SOFTWARE (Mind)' },
+                network: { total: 0, count: 0, name: 'NETWORK (Feelings)' },
+                sourceCode: { total: 0, count: 0, name: 'SOURCE CODE (Spirit)' }
+            };
+
+            questions.forEach((question, index) => {
+                const answerIndex = answers[index];
+                const score = question.options[answerIndex].score;
+                
+                if (question.category.includes('HARDWARE')) {
+                    scores.hardware.total += score;
+                    scores.hardware.count++;
+                } else if (question.category.includes('SOFTWARE')) {
+                    scores.software.total += score;
+                    scores.software.count++;
+                } else if (question.category.includes('NETWORK')) {
+                    scores.network.total += score;
+                    scores.network.count++;
+                } else if (question.category.includes('SOURCE')) {
+                    scores.sourceCode.total += score;
+                    scores.sourceCode.count++;
+                }
+            });
+
+            // Calculate averages
+            Object.keys(scores).forEach(key => {
+                scores[key].average = (scores[key].total / scores[key].count).toFixed(1);
+                scores[key].percentage = (scores[key].average / 5 * 100).toFixed(0);
+            });
+
+            // Display scores
+            const systemScores = document.getElementById('systemScores');
+            systemScores.innerHTML = '';
+
+            Object.entries(scores).forEach(([key, data]) => {
+                const scoreCard = document.createElement('div');
+                const color = getScoreColor(data.average);
+                scoreCard.className = 'bg-gray-800/50 rounded-xl p-6';
+                scoreCard.innerHTML = `
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-semibold ${color.text}">${data.name}</h4>
+                        <span class="text-2xl font-bold ${color.text}">${data.average}/5</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="${color.bg} h-2 rounded-full" style="width: ${data.percentage}%"></div>
+                    </div>
+                    <p class="text-sm text-gray-400">${getScoreDescription(data.average)}</p>
+                `;
+                systemScores.appendChild(scoreCard);
+            });
+
+            // Find priority areas (lowest scores)
+            const priorityAreas = document.getElementById('priorityAreas');
+            const sortedScores = Object.entries(scores).sort((a, b) => a[1].average - b[1].average);
+            
+            priorityAreas.innerHTML = '';
+            sortedScores.slice(0, 2).forEach(([key, data]) => {
+                const priorityItem = document.createElement('div');
+                priorityItem.className = 'flex items-center space-x-3';
+                priorityItem.innerHTML = `
+                    <span class="text-red-400">⚠️</span>
+                    <span>${data.name}: ${data.average}/5 - ${getScoreDescription(data.average)}</span>
+                `;
+                priorityAreas.appendChild(priorityItem);
+            });
+        }
+
+        // Get Score Color
+        function getScoreColor(score) {
+            if (score >= 4) return { bg: 'bg-green-500', text: 'text-green-400' };
+            if (score >= 3) return { bg: 'bg-yellow-500', text: 'text-yellow-400' };
+            if (score >= 2) return { bg: 'bg-orange-500', text: 'text-orange-400' };
+            return { bg: 'bg-red-500', text: 'text-red-400' };
+        }
+
+        // Get Score Description
+        function getScoreDescription(score) {
+            if (score >= 4.5) return 'Excellent - System running optimally';
+            if (score >= 4) return 'Good - Minor optimizations needed';
+            if (score >= 3) return 'Fair - Some debugging required';
+            if (score >= 2) return 'Poor - Significant issues detected';
+            return 'Critical - Immediate system restore needed';
+        }
+
+        // Email Report Handler
+        getReportBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Simulate email collection (in real implementation, send to your backend)
+            getReportBtn.textContent = 'Sending...';
+            getReportBtn.disabled = true;
+
+            setTimeout(() => {
+                alert('✅ Report sent! Check your email for your detailed debugging guide.\n\nYou\'ve also been subscribed to our weekly optimization tips!');
+                getReportBtn.textContent = 'Report Sent ✓';
+                getReportBtn.className = 'px-6 py-3 bg-green-600 rounded-lg font-semibold';
+            }, 2000);
+
+            // In a real implementation, you would send this data to your backend:
+            const userData = {
+                email: email,
+                testResults: answers,
+                timestamp: new Date().toISOString()
+            };
+            console.log('User data to send to backend:', userData);
+        });
+
+        // Initialize the test
+        initTest();
+    </script>
+</body>
+</html>
